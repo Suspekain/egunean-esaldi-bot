@@ -1,0 +1,25 @@
+{
+  "esaldiak": [
+    {
+      "Erabilgarri": false,
+      "Esaldia": "Erabilgarri nago"
+    },
+    {
+      "Erabilgarri": true,
+      "Esaldia": "Ez nago erabilgarri"
+    },
+    {
+      "Erabilgarri": true,
+      "Esaldia": "hirugarrena"
+    },
+    {
+      "Erabilgarri": true,
+      "Esaldia": "lalallalalal"
+    },
+    {
+      "Erabilgarri": true,
+      "Esaldia": "lololololololo"
+    }
+  ],
+  "Erabilgarri": "false"
+}
