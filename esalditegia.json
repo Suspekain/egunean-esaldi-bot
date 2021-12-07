@@ -1,7 +1,7 @@
 {
   "esaldiak": [
     {
-      "Erabilgarri": false,
+      "Erabilgarri": true,
       "Esaldia": "Erabilgarri nago"
     },
     {
@@ -9,15 +9,15 @@
       "Esaldia": "Ez nago erabilgarri"
     },
     {
-      "Erabilgarri": false,
+      "Erabilgarri": true,
       "Esaldia": "hirugarrena"
     },
     {
-      "Erabilgarri": false,
+      "Erabilgarri": true,
       "Esaldia": "lalallalalal"
     },
     {
-      "Erabilgarri": false,
+      "Erabilgarri": true,
       "Esaldia": "lololololololo"
     }
   ]
