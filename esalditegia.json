@@ -5,21 +5,20 @@
       "Esaldia": "Erabilgarri nago"
     },
     {
-      "Erabilgarri": true,
+      "Erabilgarri": false,
       "Esaldia": "Ez nago erabilgarri"
     },
     {
-      "Erabilgarri": true,
+      "Erabilgarri": false,
       "Esaldia": "hirugarrena"
     },
     {
-      "Erabilgarri": true,
+      "Erabilgarri": false,
       "Esaldia": "lalallalalal"
     },
     {
-      "Erabilgarri": true,
+      "Erabilgarri": false,
       "Esaldia": "lololololololo"
     }
-  ],
-  "Erabilgarri": "false"
+  ]
 }

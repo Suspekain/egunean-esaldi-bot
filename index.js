@@ -1,10 +1,10 @@
 const Twit = require('twit')
 
 const T = new Twit({
-  consumer_key:         '0LRgWilk74bPU7qXpckESgxLi',
-  consumer_secret:      'vBJDADUlSh16QBj3o4ILoxTrGvmPni9Ce1vaLOzJPz6QUblE0Z',
-  access_token:         '1466771736054149120-YZqu6FoIWGvkS3fuPP39geVef3qA2R',
-  access_token_secret:  'GQQvP8ls9JiV7uOzoXLHXIBqAU2DSTrADjKH03RLXRLMd',
+  consumer_key:         'gH8c6mEqJFWYtrsSX4kNIL5FI',
+  consumer_secret:      'Izx7gHyWOgc2cDJvhgKRQkDQyv525uUiWupeMoJcdmLWKVzudv',
+  access_token:         '1466771736054149120-MW6LGaD9XveBbFM8zkXZzfuKeKFgHQ',
+  access_token_secret:  'WBIFCbSetSocSkRSYPiLP2vsrUi29gxru0s5vinTlL5KJ',
   timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
   strictSSL:            true,     // optional - requires SSL certificates to be valid.
 })
@@ -16,29 +16,32 @@ function getRandomInt(min, max) {
 
 'use strict';
 
-const fs = require('fs');
-const editJsonFile = require("edit-json-file");
+const fs = require('fs')
+const config = require('./esalditegia.json')
 
-let rawdata = fs.readFileSync('esalditegia.json');
-let esalditegia = JSON.parse(rawdata);
+fs.readFile('./esalditegia.json', 'utf8', (err, esalditegiaJSON) => {
+    if (err) {
+        console.log("File read failed:", err)
+        return
+    }
+    let esalditegia = JSON.parse(esalditegiaJSON)
 
-const ausa = getRandomInt(0, esalditegia.esaldiak.length)
-let gaurkoEsaldia = esalditegia.esaldiak[ausa]
+    const ausa = getRandomInt(0, esalditegia.esaldiak.length)
+    let gaurkoEsaldia = esalditegia.esaldiak[ausa]
 
-if (gaurkoEsaldia.Erabilgarri) {
-  console.log(gaurkoEsaldia.Esaldia);
-  esalditegia.esaldiak[ausa].Erabilgarri = false;
+    if (gaurkoEsaldia.Erabilgarri) {
+      gaurkoEsaldia.Erabilgarri = false
+      console.log(gaurkoEsaldia.Esaldia);
+      T.post('statuses/update', { status: gaurkoEsaldia.Esaldia }, function(err, data, response) {
+        console.log(data.text)
+      })
+    } else {
+      console.log("errepikatua");
+    }
+    console.log(esalditegia.esaldiak[0].Erabilgarri)
 
-  let update = editJsonFile(`${__dirname}/esalditegia.json`);
-  update.set(JSON.stringify(esalditegia));
-  update.save();
-  update = editJsonFile(`${__dirname}/esalditegia.json`, {
-    autosave: true
-  })
-} else {
-  console.log("Kopiati");
-}
-
-//T.post('statuses/update', { status: 'hello world!' }, function(err, data, response) {
-//  console.log(data)
-//})
+    const eguneraketaJSON = JSON.stringify(esalditegia, null, 2)
+    fs.writeFile('./esalditegia.json', eguneraketaJSON, (err) => {
+        if (err) console.log('Error writing file:', err)
+    })
+})
